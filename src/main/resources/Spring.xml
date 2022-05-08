@@ -16,10 +16,10 @@
 
     <!--设置连接池的信息-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
-        <property name="driverClassName" value="${jdbc.drive}"></property>
+        <property name="driverClassName" value="${jdbc.driver}"></property>
         <property name="url" value="${jdbc.url}"></property>
         <property name="username" value="${jdbc.username}"></property>
-        <property name="password" value="${jdbc.password}"></property>
+        <property name="password" value="${jdbc.pwd}"></property>
     </bean>
 
     <!--Spring整合Mybatis-->
@@ -27,9 +27,13 @@
         <!--指定mybatis全局配置文件-->
         <property name="configLocation" value="classpath:mybatis-config.xml"></property>
         <property name="dataSource" ref="dataSource"></property>
-        <property name="mapperLocations" value="classpath:com.atguigu.crud.mapper"></property>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
     </bean>
-
+    <!--配置SqlSession-->
+      <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+          <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+          <constructor-arg name="executorType" value="BATCH"></constructor-arg>
+      </bean>
     <!--配置扫描器,将mybatis的接口实现加入到IOC容器中-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.atguigu.crud.mapper"></property>

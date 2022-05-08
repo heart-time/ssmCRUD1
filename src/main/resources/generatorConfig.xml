@@ -20,7 +20,7 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!-- SQL映射文件的生成策略 -->
-        <sqlMapGenerator targetPackage="com.atguigu.crud.mapper" targetProject=".\src\main\resources">
+        <sqlMapGenerator targetPackage="mapper" targetProject=".\src\main\resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- Mapper接口的生成策略 -->
